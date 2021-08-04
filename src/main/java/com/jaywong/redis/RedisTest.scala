@@ -10,8 +10,8 @@ import scala.collection.mutable
 import scala.collection.mutable.ArrayBuffer
 
 /**
- * @author wangjie
- * @create 2021-05-06 18:08
+  * @author wangjie
+  **@create 2021-05-06 18:08
  */
 object RedisTest {
   var inputPath = "D:\\redis.txt"
@@ -140,7 +140,7 @@ object RedisTest {
     val keylist = ArrayBuffer()
     spark.sparkContext.textFile(inputPath)
       .take(100)
-      .foreach(key => keylist.append(key))
+//      .foreach(key => keylist.append(key))
 
     val jedisWrite = GetRedisClient.getRedisClient(redisUgi)
     val response: scala.collection.mutable.Map[String, Response[String]] = mutable.HashMap()
