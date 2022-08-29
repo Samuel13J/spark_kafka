@@ -69,7 +69,7 @@ object RedisTest {
 
     println("count:" + rdd.count())
     println(rdd.take(5).mkString("\n"))
-
+‘
     val redisUgiBc = spark.sparkContext.broadcast(redisUgi)
     rdd.repartition(400)
       .foreachPartition(iter => {

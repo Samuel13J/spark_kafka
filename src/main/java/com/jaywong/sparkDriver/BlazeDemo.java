@@ -52,11 +52,11 @@ public class BlazeDemo {
         //指定kafka输出value的数据类型及编码格式（默认为字符串类型编码格式为uft-8）
         kafkaParams.put("value.deserializer", StringDeserializer.class);
         //消费者ID，随意指定
-        kafkaParams.put("group.id",ConfigurationManager.getProperty(Constants.GROUP_ID));
+        kafkaParams.put("group.id", ConfigurationManager.getProperty(Constants.GROUP_ID));
         //指定从latest(最新)
-        kafkaParams.put("auto.offset.reset","latest");
+        kafkaParams.put("auto.offset.reset", "latest");
         //如果true,consumer定期地往zookeeper写入每个分区的offset
-        kafkaParams.put("enable.auto.commit",false);
+        kafkaParams.put("enable.auto.commit", false);
         //构建topic set
         String kafkaTopics = ConfigurationManager.getProperty(Constants.KAFKA_TOPIC);
         String[] kafkaTopicsSplited = kafkaTopics.split(",");
@@ -99,7 +99,8 @@ public class BlazeDemo {
             })).checkpoint(Durations.seconds(60));
             result.print();
 
-            //开窗函数5s计算一次，计算前15s的数据聚合
+            //开窗函数5s计算一次，计算前15s的数据聚合十大
+
             JavaPairDStream<String, Integer> result2 = wordsAndOne.reduceByKeyAndWindow((Function2<Integer, Integer, Integer>) (x, y) -> x + y,
                     Durations.seconds(15), Durations.seconds(5));
             result2.print();
